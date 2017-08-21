@@ -1,7 +1,11 @@
 const styles = {
-  container: {
-    backgroundColor: '#CCC',
+  header: {
     textAlign: 'center',
+    color: '#ff6200',
+  },
+  content: {
+    textAlign: 'center',
+    fontSize: '24px',
   }
 };
 
