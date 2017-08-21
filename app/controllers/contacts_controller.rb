@@ -9,12 +9,14 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1
   def show
+    authorize @contact, show?
     render json: @contact
   end
 
   # POST /contacts
   def create
     @contact = Contact.new(contact_params)
+    authorize @contact, create?
 
     if @contact.save
       render json: @contact
@@ -25,6 +27,8 @@ class ContactsController < ApplicationController
 
   # PUT/PATCH /contacts/1
   def update
+    authorize @contact, update?
+
     if @contact.update(contact_params)
       render json: @contact
     else
@@ -34,6 +38,8 @@ class ContactsController < ApplicationController
 
   # DELETE /contacts/1
   def destroy
+    authorize @contact, destroy?
+
     @contact.destroy
     render json: { success: true }
   end
