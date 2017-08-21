@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user, only: :create
 
-  # GET /current_user
+  # GET /users/1
   def show
     render json: current_user
   end
