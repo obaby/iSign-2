@@ -3,7 +3,8 @@ class ContactsController < ApplicationController
 
   # GET /contacts
   def index
-    render json: Contact.all
+    @contacts = policy_scope(Contact)
+    render json: @contacts
   end
 
   # GET /contacts/1

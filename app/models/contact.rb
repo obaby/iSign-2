@@ -4,4 +4,8 @@ class Contact < ApplicationRecord
   validates :last_name, presence: true
 
   belongs_to :user_id
+
+  def owner?(user)
+    user.id == self.user_id
+  end
 end
