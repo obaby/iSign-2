@@ -3,7 +3,7 @@ class Contact < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  belongs_to :user_id
+  belongs_to :user
 
   def owner?(user)
     user.id == self.user_id

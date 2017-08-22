@@ -17,9 +17,16 @@ gem 'knock'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'pundit'
 
+gem 'faker'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner', '~> 1.6'
+  gem 'airborne'
 end
 
 group :development do

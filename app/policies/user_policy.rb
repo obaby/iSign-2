@@ -3,7 +3,7 @@ class UserPolicy < ApplicationPolicy
     user == record
   end
 
-  def create
+  def create?
     true
   end
 end
