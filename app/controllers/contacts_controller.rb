@@ -1,25 +1,25 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:show, :edit, :destroy]
+  before_action :set_contact, only: [:show, :update, :destroy]
 
   # GET /contacts
   def index
     @contacts = policy_scope(Contact)
-    render json: @contacts
+    render json: { data: @contacts }
   end
 
   # GET /contacts/1
   def show
-    authorize @contact, show?
-    render json: @contact
+    authorize @contact, :show?
+    render json: { data: @contact }
   end
 
   # POST /contacts
   def create
-    @contact = Contact.new(contact_params)
-    authorize @contact, create?
+    @contact = current_user.contacts.new(contact_params)
+    authorize @contact, :create?
 
     if @contact.save
-      render json: @contact
+      render json: { data: @contact }
     else
       render json: { errors: @contact.errors }, status: :unprocessable_entity
     end
@@ -27,10 +27,10 @@ class ContactsController < ApplicationController
 
   # PUT/PATCH /contacts/1
   def update
-    authorize @contact, update?
+    authorize @contact, :update?
 
     if @contact.update(contact_params)
-      render json: @contact
+      render json: { data: @contact }
     else
       render json: { errors: @contact.errors }, status: :unprocessable_entity
     end
@@ -38,7 +38,7 @@ class ContactsController < ApplicationController
 
   # DELETE /contacts/1
   def destroy
-    authorize @contact, destroy?
+    authorize @contact, :destroy?
 
     @contact.destroy
     render json: { success: true }

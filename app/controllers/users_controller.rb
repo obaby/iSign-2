@@ -3,15 +3,18 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: current_user
+    @user = User.find(params[:id])
+    authorize @user, :show?
+    render json: { data: current_user }
   end
 
   # POST /users
   def create
     @user = User.new(user_params)
+    authorize @user, :create?
 
     if @user.save
-      render json: @user
+      render json: { data: @user }
     else
       render json: { errors: @user.errors }, status: :unprocessable_entity
     end
